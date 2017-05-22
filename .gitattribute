@@ -1,0 +1,7 @@
+* text=auto
+
+*.sln text eol=crlf
+*.pyproj text eol=crlf
+
+*.pkl binary
+*.npz binary
