@@ -17,7 +17,7 @@ The easiest way to see our method in action is to run the CameraDemo.py script w
 Before continuing download the model files as described above.
 
 ### Comparison with state-of-the-art ###
-Download the 300W, LFPW, HELEN, AFW and IBUG datasets from https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/ and extract them to /data/images/.
+Download the 300W, LFPW, HELEN, AFW and IBUG datasets from https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/ and extract them to /data/images/ into separate directories: 300W, lfpw, helen, afw and ibug.
 Run the TestSetPreparation.py script, it may take a while.
 
 Use the DANtesting.py script to perform the experiments. It will calculate the average error for all of the test subsets as well as the AUC@0.08 score and failure rate for the 300W public and private test sets.
