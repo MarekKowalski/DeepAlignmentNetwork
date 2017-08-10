@@ -1,5 +1,7 @@
 # Deep Alignment Network #
-This is a reference implementation of the face alignment method described in "Deep Alignment Network: A convolutional neural network for robust face alignment" which has been accepted to the First Faces in-the-wild Workshop-Challenge at CVPR 2017. You can read the entire paper on Arxiv [here](https://arxiv.org/abs/1706.01789).
+This is a reference implementation of the face alignment method described in "Deep Alignment Network: A convolutional neural network for robust face alignment" which has been accepted to the First Faces in-the-wild Workshop-Challenge at CVPR 2017. You can read the entire paper on Arxiv [here](https://arxiv.org/abs/1706.01789). You can download the presentation and poster from Dropbox [here](https://www.dropbox.com/sh/u4g2o5kha0mt1uc/AADDMkoMKG2t4iiTxMUC6e2Ta?dl=0).
+
+<img src="http://home.elka.pw.edu.pl/~mkowals6/lib/exe/fetch.php?media=wiki:dan-poster.jpg" width="60%">
 
 ## Getting started ##
 First of all you need to make sure you have installed Python 2.7. For that purpose we recommend Anaconda, it has all the necessary libraries except:
