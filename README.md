@@ -1,5 +1,5 @@
 # Deep Alignment Network #
-This is a reference implementation of the face alignment method described in "Deep Alignment Network: A convolutional neural network for robust face alignment" which has been accepted to the First Faces in-the-wild Workshop-Challenge at CVPR 2017. You can read the entire paper on Arxiv [here](https://arxiv.org/abs/1706.01789). You can download the presentation and poster from Dropbox [here](https://www.dropbox.com/sh/u4g2o5kha0mt1uc/AADDMkoMKG2t4iiTxMUC6e2Ta?dl=0).
+This is a reference implementation of the face alignment method described in "Deep Alignment Network: A convolutional neural network for robust face alignment" which has been accepted to the First Faces in-the-wild Workshop-Challenge at CVPR 2017. You can read the entire paper on Arxiv [here](https://arxiv.org/abs/1706.01789). You can download the presentation and poster from Dropbox [here](https://www.dropbox.com/sh/u4g2o5kha0mt1uc/AADDMkoMKG2t4iiTxMUC6e2Ta?dl=0) or Google drive [here](https://drive.google.com/drive/folders/1QFZk_ED_FLW0xZC_gNuAKsYjLyKRMPPy).
 
 <img src="http://home.elka.pw.edu.pl/~mkowals6/lib/exe/fetch.php?media=wiki:dan-poster.jpg" width="60%">
 
@@ -11,7 +11,7 @@ First of all you need to make sure you have installed Python 2.7. For that purpo
 
 OpenCV and Theano can be downloaded from Christoph Gohlke's [website](http://www.lfd.uci.edu/~gohlke/pythonlibs/). Lasagne can be downloaded from its own [website](https://lasagne.readthedocs.io/en/latest/).
 
-Once you have installed Python and the dependencies download at least one of the two pre-trained models available [here](https://www.dropbox.com/sh/v754z1egib0hamh/AADGX1SE9GCj4h3eDazsc0bXa?dl=0).
+Once you have installed Python and the dependencies download at least one of the two pre-trained models available on Dropbox [here](https://www.dropbox.com/sh/v754z1egib0hamh/AADGX1SE9GCj4h3eDazsc0bXa?dl=0) or Google drive [here](https://drive.google.com/open?id=168tC2OxS5DjyaiuDy_JhIV3eje8K_PLJ).
 
 The easiest way to see our method in action is to run the CameraDemo.py script which performs face tracking on a local webcam.
 
