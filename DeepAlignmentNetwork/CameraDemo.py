@@ -3,9 +3,15 @@ import numpy as np
 import cv2
 import utils
 
+#Change this to True if you want to use the DAN-Menpo-tracking.npz model, which is able to detect when face tracking is lost.
+useTrackingModel = False
 
-model = FaceAlignment(112, 112, 1, 2)
-model.loadNetwork("../DAN-Menpo.npz")
+if useTrackingModel:
+    model = FaceAlignment(112, 112, 1, 1, True)
+    model.loadNetwork("../DAN-Menpo-tracking.npz")
+else:
+    model = FaceAlignment(112, 112, 1, 2)
+    model.loadNetwork("../DAN-Menpo.npz")
 
 vidIn = cv2.VideoCapture(0)
 cascade = cv2.CascadeClassifier("../data/haarcascade_frontalface_alt.xml")
@@ -33,13 +39,23 @@ while True:
             initLandmarks = utils.bestFitRect(None, model.initLandmarks, [minX, minY, maxX, maxY])
             reset = False
 
-            landmarks = model.processImg(img[np.newaxis], initLandmarks)
+            if model.confidenceLayer:
+                landmarks, confidence = model.processImg(img[np.newaxis], initLandmarks)
+                if confidence < 0.1:
+                    reset = True
+            else:
+                landmarks = model.processImg(img[np.newaxis], initLandmarks)
             landmarks = landmarks.astype(np.int32)
             for i in range(landmarks.shape[0]):
                 cv2.circle(vis, (landmarks[i, 0], landmarks[i, 1]), 2, (0, 255, 0))
     else:
         initLandmarks = utils.bestFitRect(landmarks, model.initLandmarks)
-        landmarks = model.processImg(img[np.newaxis], initLandmarks)      
+        if model.confidenceLayer:
+            landmarks, confidence = model.processImg(img[np.newaxis], initLandmarks)
+            if confidence < 0.1:
+                reset = True
+        else:
+            landmarks = model.processImg(img[np.newaxis], initLandmarks)    
         landmarks = np.round(landmarks).astype(np.int32)
         
         for i in range(landmarks.shape[0]):

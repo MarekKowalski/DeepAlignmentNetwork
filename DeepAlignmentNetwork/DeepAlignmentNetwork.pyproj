@@ -28,6 +28,7 @@
     </Compile>
     <Compile Include="DANtesting.py" />
     <Compile Include="DANtraining.py" />
+    <Compile Include="HoloFaceBackend.py" />
     <Compile Include="MenpoEval.py">
       <SubType>Code</SubType>
     </Compile>

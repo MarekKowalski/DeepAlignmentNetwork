@@ -18,7 +18,7 @@ from LandmarkTranformLayer import LandmarkTransformLayer
 import utils
 
 class FaceAlignment(object):
-    def __init__(self, height, width, nChannels, nStages):        
+    def __init__(self, height, width, nChannels, nStages, confidenceLayer=False):        
         self.landmarkPatchSize = 16
 
         self.data = theano.tensor.tensor4('inputs', dtype=theano.config.floatX)
@@ -32,6 +32,7 @@ class FaceAlignment(object):
         self.errorsTrain = []
 
         self.nStages = nStages
+        self.confidenceLayer = confidenceLayer
 
     def initializeNetwork(self):
         self.layers = self.createCNN()
@@ -112,10 +113,15 @@ class FaceAlignment(object):
         net['s1_output'] = lasagne.layers.DenseLayer(net['s1_fc1'], num_units=136, nonlinearity=None)
         net['s1_landmarks'] = LandmarkInitLayer(net['s1_output'], self.initLandmarks)
 
+        if self.confidenceLayer:
+            net['s1_confidence'] = lasagne.layers.DenseLayer(net['s1_fc1'], num_units=2, W=GlorotUniform('relu'), nonlinearity=lasagne.nonlinearities.softmax)
+
         for i in range(1, self.nStages):
             self.addDANStage(i + 1, net)
 
         net['output'] = net['s' + str(self.nStages) + '_landmarks']
+        if self.confidenceLayer:
+            net['output'] = lasagne.layers.ConcatLayer([net['output'], net['s1_confidence']])
 
         return net
 
@@ -131,7 +137,8 @@ class FaceAlignment(object):
             self.initLandmarks = f["initLandmarks"]
                 
         self.initializeNetwork()
-        lasagne.layers.set_all_param_values(self.network, param_values)
+        nParams = len(lasagne.layers.get_all_param_values(self.network))
+        lasagne.layers.set_all_param_values(self.network, param_values[:nParams])
         
     def processImg(self, img, inputLandmarks):
         inputImg, transform = self.CropResizeRotate(img, inputLandmarks)
@@ -139,9 +146,34 @@ class FaceAlignment(object):
         inputImg = inputImg / self.stdDevImg
 
         output = self.generate_network_output([inputImg])[0][0]
-        landmarks = output.reshape((-1, 2))
+        if self.confidenceLayer:
+            landmarkOutput = output[:-2]
+            confidenceOutput = output[-2:]
 
-        return np.dot(landmarks - transform[1], np.linalg.inv(transform[0]))  
+            landmarks = landmarkOutput.reshape((-1, 2))
+            confidence = confidenceOutput[1]
+
+            return np.dot(landmarks - transform[1], np.linalg.inv(transform[0])), confidence
+        else:
+            landmarks = output.reshape((-1, 2))
+            return np.dot(landmarks - transform[1], np.linalg.inv(transform[0]))
+
+    def processNormalizedImg(self, img):
+        inputImg = img.astype(np.float32)
+        inputImg = inputImg - self.meanImg
+        inputImg = inputImg / self.stdDevImg
+
+        output = self.generate_network_output([inputImg])[0][0]
+        if self.confidenceLayer:
+            landmarkOutput = output[:-2]
+            confidenceOutput = output[-2:]
+
+            landmarks = landmarkOutput.reshape((-1, 2))
+            confidence = confidenceOutput[1]
+            return landmarks, confidence
+        else:
+            landmarks = output.reshape((-1, 2))       
+            return landmarks
 
     def CropResizeRotate(self, img, inputShape):
         A, t = utils.bestFit(self.initLandmarks, inputShape, True)
