@@ -5,11 +5,15 @@ This is a reference implementation of the face alignment method described in "De
 
 ## Getting started ##
 First of all you need to make sure you have installed Python 2.7. For that purpose we recommend Anaconda, it has all the necessary libraries except:
- * Theano 0.9
+ * Theano 0.9.0
  * Lasagne 0.2
  * OpenCV 3.1.0 or newer
 
-OpenCV and Theano can be downloaded from Christoph Gohlke's [website](http://www.lfd.uci.edu/~gohlke/pythonlibs/). Lasagne can be downloaded from its own [website](https://lasagne.readthedocs.io/en/latest/).
+OpenCV can be downloaded from Christoph Gohlke's [website](http://www.lfd.uci.edu/~gohlke/pythonlibs/). 
+Theano and Lasagne can be installed with the following commands:
+.. code-block:: bash
+  pip install Theano==0.9.0
+  pip install https://github.com/Lasagne/Lasagne/archive/master.zip
 
 Once you have installed Python and the dependencies download at least one of the two pre-trained models available on Dropbox [here](https://www.dropbox.com/sh/v754z1egib0hamh/AADGX1SE9GCj4h3eDazsc0bXa?dl=0) or Google drive [here](https://drive.google.com/open?id=168tC2OxS5DjyaiuDy_JhIV3eje8K_PLJ).
 
