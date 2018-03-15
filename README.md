@@ -41,8 +41,9 @@ Download the Menpo test set from https://ibug.doc.ic.ac.uk/resources/ and extrac
 Run the scripts to process the dataset. The results will be saved as images and pts files in the directories indicated in the imgOutputDir and ptsOutputDir variables.
 
 ## TensorFlow implementation ##
-A TensorFlow implementation of Deep Alignment Network has been published by another GitHub user, you can see it under this link:
-[TensorFlow DAN](https://github.com/zjjMaiMai/Deep-Alignment-Network-A-convolutional-neural-network-for-robust-face-alignment)
+Two TensorFlow implementations of Deep Alignment Network have been published by other GitHub users:
+ - [zjjMaiMai's implementatation](https://github.com/zjjMaiMai/Deep-Alignment-Network-A-convolutional-neural-network-for-robust-face-alignment),
+ - [mariolew's implementatation](https://github.com/mariolew/Deep-Alignment-Network-tensorflow).
 
 ## Citation ## 
 If you use this software in your research, then please cite the following paper:
