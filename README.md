@@ -50,5 +50,8 @@ If you use this software in your research, then please cite the following paper:
 
 Kowalski, M.; Naruniec, J.; Trzcinski, T.: "Deep Alignment Network: A convolutional neural network for robust face alignment", CVPRW 2017
 
+## License ##
+While the code is licensed under the MIT license, which allows for commercial use, keep in mind that the models linked above were trained on the 300-W dataset, which allows for research use only. For details please see: https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/
+
 ## Contact ##
 If you have any questions or suggestions feel free to contact me at <m.kowalski@ire.pw.edu.pl>.
