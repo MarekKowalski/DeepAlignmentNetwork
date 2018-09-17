@@ -10,7 +10,7 @@ class LandmarkImageLayer(Layer):
 
         self.img_shape = img_shape
         self.patch_size = patch_size
-        self.half_size = patch_size / 2
+        self.half_size = int(patch_size / 2)
 
         self.offsets = np.array(list(itertools.product(range(-self.half_size, self.half_size + 1), range(-self.half_size, self.half_size + 1))))
 
